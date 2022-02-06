@@ -19,3 +19,9 @@ sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
+
+
+# Replace luci-theme-argon
+cd package/lean  
+rm -rf luci-theme-argon  
+git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git 
