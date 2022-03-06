@@ -38,12 +38,6 @@ echo '修改路由器默认IP'
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 echo '=========Alert default IP OK!========='
 
-echo '移除bcm53xx中的其他机型'
-sed -i '421,453d' target/linux/bcm53xx/image/Makefile
-sed -i '140,412d' target/linux/bcm53xx/image/Makefile
-sed -i 's/$(USB3_PACKAGES) k3screenctrl/luci-app-k3screenctrl/g' target/linux/bcm53xx/image/Makefile
-# sed -n '140,146p' target/linux/bcm53xx/image/Makefile
-echo '=========Remove other devices of bcm53xx OK!========='
 
 echo 'K3专用，编译K3的时候只会出K3固件（去掉sed前面的#生效）'
 sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3|' target/linux/bcm53xx/image/Makefile
