@@ -18,3 +18,11 @@
 # cd package/lean  
 # rm -rf luci-theme-argon  
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
+
+# 整理固件包时候,删除您不想要的固件或者文件,让它不需要上传到Actions空间
+cat >${GITHUB_WORKSPACE}/Clear <<-EOF
+rm -rf config.buildinfo
+rm -rf feeds.buildinfo
+rm -rf sha256sums
+rm -rf version.buildinfo
+EOF
