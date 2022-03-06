@@ -12,6 +12,10 @@
 
 # Uncomment a feed source
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+
+echo 'Add a feed source'
+# sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+# sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 sed -i '$a src-git kenzo https://github.com/kenzok8/small-package' feeds.conf.default
 sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 
@@ -51,8 +55,14 @@ echo '修改路由器默认IP'
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 echo '=========Alert default IP OK!========='
 
-# K3专用，编译K3的时候只会出K3固件（去掉sed前面的#生效）
+echo 'K3专用，编译K3的时候只会出K3固件（去掉sed前面的#生效）'
 sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3|' target/linux/bcm53xx/image/Makefile
+echo '=========Build K3 only OK!========='
+
+# 修改插件名
+sed -i 's/"KMS 服务器"/"KMS激活"/g' `grep "KMS 服务器" -rl ./`
+sed -i 's/"USB 打印服务器"/"打印服务"/g' `grep "USB 打印服务器" -rl ./`
+sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
 
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
