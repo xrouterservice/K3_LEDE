@@ -10,6 +10,17 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
+# Alter default router IP
+#sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
+
+#修改NTP设置
+#sed -i "s/'0.openwrt.pool.ntp.org'/'ntp1.aliyun.com'/g" package/base-files/files/bin/config_generate
+#sed -i "s/'1.openwrt.pool.ntp.org'/'ntp2.aliyun.com'/g" package/base-files/files/bin/config_generate
+#sed -i "s/'2.openwrt.pool.ntp.org'/'ntp3.aliyun.com'/g" package/base-files/files/bin/config_generate
+#sed -i "s/'3.openwrt.pool.ntp.org'/'ntp4.aliyun.com'/g" package/base-files/files/bin/config_generate
+#cat package/base-files/files/bin/config_generate |grep system.ntp.server=
+#echo 'Alert NTP Settings OK!====================='
+
 # Modify default IP
 # sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 # sed -i 's/OpenWrt/LEDE/g' package/base-files/files/bin/config_generate
