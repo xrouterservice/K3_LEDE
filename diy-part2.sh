@@ -44,11 +44,3 @@ echo '=========Add argon-mod config OK!========='
 sed -i 's/"KMS 服务器"/"KMS激活"/g' `grep "KMS 服务器" -rl ./`
 sed -i 's/"USB 打印服务器"/"打印服务"/g' `grep "USB 打印服务器" -rl ./`
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
-
-# 整理固件包时候,删除您不想要的固件或者文件,让它不需要上传到Actions空间
-cat >${GITHUB_WORKSPACE}/Clear <<-EOF
-rm -rf config.buildinfo
-rm -rf feeds.buildinfo
-rm -rf sha256sums
-rm -rf version.buildinfo
-EOF
