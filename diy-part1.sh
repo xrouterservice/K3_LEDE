@@ -29,16 +29,6 @@ rm -rf package/lean/k3screenctrl
 git clone https://github.com/yangxu52/k3screenctrl_build.git package/lean/k3screenctrl/
 echo '=========Replace k3screen drive plug OK!========='
 
-echo '添加jerrykuku的argon-mod主题'
-rm -rf package/lean/luci-theme-argon  
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/lean/luci-theme-argon
-echo '=========Add argon-mod OK!========='
-
-echo '添加jerrykuku的argon-mod主题自定义配置'
-rm -rf package/lean/luci-app-argon-config 
-git clone https://github.com/jerrykuku/luci-app-argon-config package/lean/luci-app-argon-config
-echo '=========Add argon-mod config OK!========='
-
 echo '移除bcm53xx中的其他机型'
 sed -i '421,453d' target/linux/bcm53xx/image/Makefile
 sed -i '140,412d' target/linux/bcm53xx/image/Makefile
