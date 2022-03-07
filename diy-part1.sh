@@ -36,6 +36,10 @@ sed -i 's/$(USB3_PACKAGES) k3screenctrl/luci-app-k3screenctrl/g' target/linux/bc
 # sed -n '140,146p' target/linux/bcm53xx/image/Makefile
 echo '=========Remove other devices of bcm53xx OK!========='
 
+echo '移除主页跑分信息显示'
+sed -i 's/ <%=luci.sys.exec("cat \/etc\/bench.log") or ""%>//g' package/lean/autocore/files/arm/index.htm
+echo '=========Remove benchmark display in index OK!========='
+
 echo '修改主机名'
 sed -i "s/hostname='OpenWrt'/hostname='Phicomm-K3'/g" package/base-files/files/bin/config_generate
 cat package/base-files/files/bin/config_generate |grep hostname=
@@ -44,6 +48,7 @@ echo '=========Alert hostname OK!========='
 echo '修改路由器默认IP'
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 echo '=========Alert default IP OK!========='
+
 
 
 # echo 'K3专用，编译K3的时候只会出K3固件（去掉sed前面的#生效）'
