@@ -30,6 +30,14 @@
 # rm -rf luci-theme-argon  
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
 
+echo '修改主机名'
+sed -i "s/hostname='OpenWrt'/hostname='Phicomm-K3'/g" package/base-files/files/bin/config_generate
+cat package/base-files/files/bin/config_generate |grep hostname=
+echo '=========Alert hostname OK!========='
+
+echo '修改路由器默认IP'
+sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+echo '=========Alert default IP OK!========='
 
 # 修改插件名
 sed -i 's/"KMS 服务器"/"KMS激活"/g' `grep "KMS 服务器" -rl ./`
