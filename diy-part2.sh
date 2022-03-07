@@ -30,15 +30,6 @@
 # rm -rf luci-theme-argon  
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
 
-echo '添加jerrykuku的argon-mod主题'
-rm -rf package/lean/luci-theme-argon  
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/lean/luci-theme-argon
-echo '=========Add argon-mod OK!========='
-
-echo '添加jerrykuku的argon-mod主题自定义配置'
-rm -rf package/lean/luci-app-argon-config 
-git clone https://github.com/jerrykuku/luci-app-argon-config package/lean/luci-app-argon-config
-echo '=========Add argon-mod config OK!========='
 
 # 修改插件名
 sed -i 's/"KMS 服务器"/"KMS激活"/g' `grep "KMS 服务器" -rl ./`
