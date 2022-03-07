@@ -31,7 +31,7 @@
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
 
 echo '修改主机名'
-sed -i "s/hostname='OpenWrt'/hostname='Phicomm-K3'/g" package/base-files/files/bin/config_generate
+sed -i "s/hostname='OpenWrt'/hostname=''/g" package/base-files/files/bin/config_generate
 cat package/base-files/files/bin/config_generate |grep hostname=
 echo '=========Alert hostname OK!========='
 
