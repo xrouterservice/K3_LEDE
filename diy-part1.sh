@@ -61,7 +61,7 @@ sed -i 's/ <%=luci.sys.exec("cat \/etc\/bench.log") or ""%>//g' package/lean/aut
 echo '=========Remove benchmark display in index OK!========='
 
 echo '修改主机名'
-sed -i "s/hostname='OpenWrt'/hostname='LEDE'/g" package/base-files/files/bin/config_generate
+sed -i "s/hostname='OpenWrt'/hostname='PHICOMM'/g" package/base-files/files/bin/config_generate
 cat package/base-files/files/bin/config_generate |grep hostname=
 echo '=========Alert hostname OK!========='
 
@@ -85,6 +85,14 @@ sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl .
 echo 'K3专用，编译K3的时候只会出K3固件（去掉sed前面的#生效）'
 sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3|' target/linux/bcm53xx/image/Makefile
 echo '=========Build K3 only OK!========='
+
+# 整理固件包时候,删除您不想要的固件或者文件,让它不需要上传到Actions空间
+cat >${GITHUB_WORKSPACE}/Clear <<-EOF
+rm -rf config.buildinfo
+rm -rf feeds.buildinfo
+rm -rf sha256sums
+rm -rf version.buildinfo
+EOF
 
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
