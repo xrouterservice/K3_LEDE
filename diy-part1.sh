@@ -13,11 +13,12 @@
 # Uncomment a feed source
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
-echo 'Add a feed source'
+echo '添加自定义源'
 # sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 # sed -i '$a src-git kenzo https://github.com/kenzok8/small-package' feeds.conf.default
 sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+echo '=========Add a feed source OK!========='
 
 # echo '修改5.4分支为5.4.150'
  # sed -i '/^LINUX_VERSION-5.4/c LINUX_VERSION-5.4 = .150' include/kernel-version.mk
@@ -26,7 +27,7 @@ sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
  # rm -rf ./target/
  # tar -zxf ./target-5.4.150.tar.gz
  # rm -rf ./target-5.4.150.tar.gz
- # echo '=========Alert kernel to 5.4.150 OK!========='
+# echo '=========Alert kernel to 5.4.150 OK!========='
 
 echo '添加lwz322的K3屏幕插件'
 rm -rf package/lean/luci-app-k3screenctrl
@@ -59,11 +60,31 @@ echo '移除主页跑分信息显示'
 sed -i 's/ <%=luci.sys.exec("cat \/etc\/bench.log") or ""%>//g' package/lean/autocore/files/arm/index.htm
 echo '=========Remove benchmark display in index OK!========='
 
+echo '修改主机名'
+sed -i "s/hostname='OpenWrt'/hostname='LEDE'/g" package/base-files/files/bin/config_generate
+cat package/base-files/files/bin/config_generate |grep hostname=
+echo '=========Alert hostname OK!========='
 
+echo '修改路由器默认IP'
+sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+echo '=========Alert default IP OK!========='
 
-# echo 'K3专用，编译K3的时候只会出K3固件（去掉sed前面的#生效）'
-# sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3|' target/linux/bcm53xx/image/Makefile
-# echo '=========Build K3 only OK!========='
+# 修改插件名字
+# sed -i 's/"aMule设置"/"电驴下载"/g' `grep "aMule设置" -rl ./`
+# sed -i 's/"网络存储"/"NAS"/g' `grep "网络存储" -rl ./`
+sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
+# sed -i 's/"实时流量监测"/"流量"/g' `grep "实时流量监测" -rl ./`
+# sed -i 's/"KMS 服务器"/"KMS激活"/g' `grep "KMS 服务器" -rl ./`
+# sed -i 's/"TTYD 终端"/"命令窗"/g' `grep "TTYD 终端" -rl ./`
+sed -i 's/"USB 打印服务器"/"打印服务"/g' `grep "USB 打印服务器" -rl ./`
+# sed -i 's/"Web 管理"/"Web"/g' `grep "Web 管理" -rl ./`
+# sed -i 's/"管理权"/"改密码"/g' `grep "管理权" -rl ./`
+# sed -i 's/"带宽监控"/"监控"/g' `grep "带宽监控" -rl ./`
+sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
+
+echo 'K3专用，编译K3的时候只会出K3固件（去掉sed前面的#生效）'
+sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3|' target/linux/bcm53xx/image/Makefile
+echo '=========Build K3 only OK!========='
 
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
