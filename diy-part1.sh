@@ -49,12 +49,12 @@ rm -rf package/lean/luci-app-argon-config
 git clone https://github.com/jerrykuku/luci-app-argon-config package/lean/luci-app-argon-config
 echo '=========Add argon-mod config OK!========='
 
-echo '移除bcm53xx中的其他机型'
-sed -i '421,453d' target/linux/bcm53xx/image/Makefile
-sed -i '140,412d' target/linux/bcm53xx/image/Makefile
-sed -i 's/$(USB3_PACKAGES) k3screenctrl/luci-app-k3screenctrl/g' target/linux/bcm53xx/image/Makefile
+# echo '移除bcm53xx中的其他机型'
+# sed -i '421,453d' target/linux/bcm53xx/image/Makefile
+# sed -i '140,412d' target/linux/bcm53xx/image/Makefile
+# sed -i 's/$(USB3_PACKAGES) k3screenctrl/luci-app-k3screenctrl/g' target/linux/bcm53xx/image/Makefile
 # sed -n '140,146p' target/linux/bcm53xx/image/Makefile
-echo '=========Remove other devices of bcm53xx OK!========='
+# echo '=========Remove other devices of bcm53xx OK!========='
 
 echo '移除主页跑分信息显示'
 sed -i 's/ <%=luci.sys.exec("cat \/etc\/bench.log") or ""%>//g' package/lean/autocore/files/arm/index.htm
