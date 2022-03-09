@@ -49,12 +49,12 @@ rm -rf package/lean/luci-app-argon-config
 git clone https://github.com/jerrykuku/luci-app-argon-config package/lean/luci-app-argon-config
 echo '=========Add argon-mod config OK!========='
 
-# echo '移除bcm53xx中的其他机型'
-# sed -i '421,453d' target/linux/bcm53xx/image/Makefile
-# sed -i '140,412d' target/linux/bcm53xx/image/Makefile
-# sed -i 's/$(USB3_PACKAGES) k3screenctrl/luci-app-k3screenctrl/g' target/linux/bcm53xx/image/Makefile
-# sed -n '140,146p' target/linux/bcm53xx/image/Makefile
-# echo '=========Remove other devices of bcm53xx OK!========='
+echo '移除bcm53xx中的其他机型'
+sed -i '421,453d' target/linux/bcm53xx/image/Makefile
+sed -i '140,412d' target/linux/bcm53xx/image/Makefile
+sed -i 's/$(USB3_PACKAGES) k3screenctrl/luci-app-k3screenctrl/g' target/linux/bcm53xx/image/Makefile
+sed -n '140,146p' target/linux/bcm53xx/image/Makefile
+echo '=========Remove other devices of bcm53xx OK!========='
 
 echo '移除主页跑分信息显示'
 sed -i 's/ <%=luci.sys.exec("cat \/etc\/bench.log") or ""%>//g' package/lean/autocore/files/arm/index.htm
@@ -82,10 +82,11 @@ sed -i 's/"USB 打印服务器"/"打印服务"/g' `grep "USB 打印服务器" -r
 # sed -i 's/"带宽监控"/"监控"/g' `grep "带宽监控" -rl ./`
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
 
-echo 'K3专用，编译K3的时候只会出K3固件（去掉sed前面的#生效）'
-sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3|' target/linux/bcm53xx/image/Makefile
-echo '=========Build K3 only OK!========='
 
+
+# echo 'K3专用，编译K3的时候只会出K3固件（去掉sed前面的#生效）'
+# sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3|' target/linux/bcm53xx/image/Makefile
+# echo '=========Build K3 only OK!========='
 
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
