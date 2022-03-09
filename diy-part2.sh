@@ -8,27 +8,8 @@
 # https://github.com/P3TERX/Actions-OpenWrt
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
-#
+# Description: 大部分是一开始不在默认底包，feeds update和自定义添加完后才有的 后设置
 
-# Alter default router IP
-#sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
-
-#修改NTP设置
-#sed -i "s/'0.openwrt.pool.ntp.org'/'ntp1.aliyun.com'/g" package/base-files/files/bin/config_generate
-#sed -i "s/'1.openwrt.pool.ntp.org'/'ntp2.aliyun.com'/g" package/base-files/files/bin/config_generate
-#sed -i "s/'2.openwrt.pool.ntp.org'/'ntp3.aliyun.com'/g" package/base-files/files/bin/config_generate
-#sed -i "s/'3.openwrt.pool.ntp.org'/'ntp4.aliyun.com'/g" package/base-files/files/bin/config_generate
-#cat package/base-files/files/bin/config_generate |grep system.ntp.server=
-#echo 'Alert NTP Settings OK!====================='
-
-# Modify default IP
-# sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
-# sed -i 's/OpenWrt/LEDE/g' package/base-files/files/bin/config_generate
-
-# Replace luci-theme-argon
-# cd package/lean  
-# rm -rf luci-theme-argon  
-# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
 
 echo '修改主机名'
 sed -i "s/hostname='OpenWrt'/hostname='PHICOMM'/g" package/base-files/files/bin/config_generate
@@ -51,3 +32,24 @@ sed -i 's/"USB 打印服务器"/"打印服务"/g' `grep "USB 打印服务器" -r
 # sed -i 's/"管理权"/"改密码"/g' `grep "管理权" -rl ./`
 # sed -i 's/"带宽监控"/"监控"/g' `grep "带宽监控" -rl ./`
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
+
+
+# 以下是备用自定义配置，去'#'后才会执行，非必要不添加
+
+# echo '修改默认主题'
+# sed -i 's/luci-theme-bootstrap/luci-theme-infinityfreedom/g' feeds/luci/collections/luci/Makefile 
+# echo '=========Alert Default theme OK!========='
+
+# echo '修改upnp绑定文件位置'
+# sed -i 's/\/var\/upnp.leases/\/tmp\/upnp.leases/g' feeds/packages/net/miniupnpd/files/upnpd.config
+# cat feeds/packages/net/miniupnpd/files/upnpd.config |grep upnp_lease_file
+# echo '=========Alert upnp binding file directory!========='
+
+# 修改NTP设置
+# sed -i "s/'0.openwrt.pool.ntp.org'/'ntp1.aliyun.com'/g" package/base-files/files/bin/config_generate
+# sed -i "s/'1.openwrt.pool.ntp.org'/'ntp2.aliyun.com'/g" package/base-files/files/bin/config_generate
+# sed -i "s/'2.openwrt.pool.ntp.org'/'ntp3.aliyun.com'/g" package/base-files/files/bin/config_generate
+# sed -i "s/'3.openwrt.pool.ntp.org'/'ntp4.aliyun.com'/g" package/base-files/files/bin/config_generate
+# cat package/base-files/files/bin/config_generate |grep system.ntp.server=
+# echo 'Alert NTP Settings OK!====================='
+
