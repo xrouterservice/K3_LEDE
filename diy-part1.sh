@@ -61,6 +61,23 @@ sed -i 's/ <%=luci.sys.exec("cat \/etc\/bench.log") or ""%>//g' package/lean/aut
 echo '=========Remove benchmark display in index OK!========='
 
 
+
+# mkdir -p files/etc/hotplug.d/block && curl -fsSL https://raw.githubusercontent.com/281677160/openwrt-package/usb/block/10-mount > files/etc/hotplug.d/block/10-mount
+
+# echo '替换K3屏幕驱动插件'
+# rm -rf package/lean/k3screenctrl
+# git clone https://github.com/RLEDE/k3screenctrl_build.git package/lean/k3screenctrl/
+# echo '=========Replace k3screen drive plug OK!========='
+
+# echo '替换K3的无线驱动'
+# wget -nv https://github.com/RLEDE/target/raw/main/brcmfmac4366c-pcie.bin -O package/lean/k3-brcmfmac4366c-firmware/files/lib/firmware/brcm/brcmfmac4366c-pcie.bin
+# echo '=========Replace k3wifi OK!========='
+
+# echo '添加theme'
+# git clone https://github.com/abctel/luci-theme-edge.git package/lean/luci-theme-edge
+# git clone https://github.com/thinktip/luci-theme-neobird.git package/lean/luci-theme-neobird
+# echo '=========Add theme OK!========='
+
 # echo 'K3专用，编译K3的时候只会出K3固件（去掉sed前面的#生效）'
 # sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3|' target/linux/bcm53xx/image/Makefile
 # echo '=========Build K3 only OK!========='
