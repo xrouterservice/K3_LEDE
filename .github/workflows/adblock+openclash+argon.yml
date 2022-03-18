@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: K3_LEDE_adhome+openclash+argon
+name: K3_LEDE_adblock+openclash+argon
 
 on:
   repository_dispatch:
