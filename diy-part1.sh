@@ -60,8 +60,6 @@ echo '移除主页跑分信息显示'
 sed -i 's/ <%=luci.sys.exec("cat \/etc\/bench.log") or ""%>//g' package/lean/autocore/files/arm/index.htm
 echo '=========Remove benchmark display in index OK!========='
 
-rm -rf feeds/routing/batman-adv
-svn co https://github.com/openwrt/routing/branches/openwrt-19.07/batman-adv feeds/routing/batman-adv
 
 
 # mkdir -p files/etc/hotplug.d/block && curl -fsSL https://raw.githubusercontent.com/281677160/openwrt-package/usb/block/10-mount > files/etc/hotplug.d/block/10-mount
