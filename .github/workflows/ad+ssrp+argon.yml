@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: K3_LEDE_ad+ssrp+argon
+name: ad+ssrp+argon
 
 on:
   repository_dispatch:
