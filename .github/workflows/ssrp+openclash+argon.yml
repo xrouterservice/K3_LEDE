@@ -16,8 +16,8 @@ on:
     inputs:
       ssh:
         description: 'SSH connection to Actions'
-        required: ture
-        default: 'ssh'
+        required: false
+        default: 'false'
 
 
 env:
